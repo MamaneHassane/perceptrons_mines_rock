@@ -24,10 +24,10 @@ def apprentissage_batch(ensemble, dimension_n, pas_alpha):
             else: # y != t
                 delta_omega = delta_omega + np.dot(alpha * (paire.classification_t - paire.classement_paire_y(omega)),
                                      x_prime(paire.vecteur))
-                omega = omega + delta_omega
-                print("La paire", paire.vecteur, " prediction actuelle ", paire.classement_paire_y(omega), "classe réelle ",
-                      paire.classification_t,
-                      " à causé un changement de omega à ", omega)
+        omega = omega + delta_omega
+        print("La paire", paire.vecteur, " prediction actuelle ", paire.classement_paire_y(omega), "classe réelle ",
+              paire.classification_t,
+              " à causé un changement de omega à ", omega)
     print("Toutes les paires ont bien classées avec omega à ",
           omega,
           "\nFin de l'éxecution")
