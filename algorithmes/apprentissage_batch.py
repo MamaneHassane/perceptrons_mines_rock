@@ -5,6 +5,7 @@ from classes.ensemble import Ensemble
 from helpers.helpers import random_vecteur, vecteur_nul, x_prime
 
 # Algorithme d'apprentissage du perceptron version batch
+# On va retourner le vecteur omega, ensemble des poids, qui va nous servir à classer de nouvelles données
 def apprentissage_batch(ensemble, dimension_n, pas_alpha):
     # omega random : les exécutions seront différentes
     omega = random_vecteur(dimension_n+1)
@@ -24,10 +25,9 @@ def apprentissage_batch(ensemble, dimension_n, pas_alpha):
             else: # y != t
                 delta_omega = delta_omega + np.dot(alpha * (paire.classification_t - paire.classement_paire_y(omega)),
                                      x_prime(paire.vecteur))
+        # Version batch : on change omega après avoir tout parcouru
         omega = omega + delta_omega
-        print("La paire", paire.vecteur, " prediction actuelle ", paire.classement_paire_y(omega), "classe réelle ",
-              paire.classification_t,
-              " à causé un changement de omega à ", omega)
+        print("Nouveau omega après 1 tour: ", omega)
     print("Toutes les paires ont bien classées avec omega à ",
           omega,
           "\nFin de l'éxecution")
