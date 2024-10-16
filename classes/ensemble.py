@@ -1,5 +1,5 @@
 # Un ensemble X = { (x(u), t(u)), x vecteur de R^n t = { 0 / 1 } } est constitué de paire
-from classes.Paire import Paire
+from classes.paire import Paire
 
 class Ensemble :
     def __init__(self, *args):
