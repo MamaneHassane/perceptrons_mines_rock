@@ -16,13 +16,13 @@ def signe_de_x_prime_transposee_omega(vecteur_np, omega):
 def vecteur_nul(dimension):
     return np.zeros(dimension)
 
-# Générer un vecteur de n éléments aléatoires entre 0 et 1
+# Générer un vecteur de n éléments aléatoires entre -1 et 1
 def random_vecteur(dimension) :
-    return np.random.uniform(0, 1, dimension)
+    return np.random.uniform(-1, 1, dimension)
 
-# Générer un vecteur omega dont le premier élément est 1
+# Générer un vecteur omega dont le premier élément est 1, en prenant en compte la dimension de l'ensemble
 def random_omega(dimension):
-    return np.insert(np.random.uniform(0, 1, dimension - 1),0,1)
+    return np.insert(np.random.uniform(-1, 1, dimension),0,1)
 
 
 

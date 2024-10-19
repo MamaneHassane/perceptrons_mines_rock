@@ -40,5 +40,6 @@ d = Paire((0,0), 0)
 
 # On essaye avec la fonction OU
 fonction_OU = Ensemble(a, b, c, d)
+fonction_OU.dessiner()
 apprentissage_batch(fonction_OU,2, 0.2)
 
