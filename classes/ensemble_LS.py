@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-
 from classes.ensemble import Ensemble
 from classes.paire import Paire
 from helpers.helpers import random_omega, random_vecteur, signe_de_x_prime_transposee_omega
@@ -12,27 +11,28 @@ class EnsembleLS(Ensemble):
         self.omega_correspondant = random_omega(dimension_n)
         self.elements = []
 
-        # Compteurs pour suivre le nombre de paires classées 0 et 1
-        count_class_0 = 0
-        count_class_1 = 0
-
-        # Générer les éléments jusqu'à obtenir un équilibre des classes
-        while len(self.elements) < norme_p:
+        # Générer la moitié des vecteurs pour la classe 1
+        for _ in range(norme_p // 2):
             x = random_vecteur(dimension_n)
-            classification = 1 if signe_de_x_prime_transposee_omega(x, self.omega_correspondant) == True else 0
-            # Ajouter la paire en s'assurant de maintenir un équilibre entre les deux classes
-            if classification == 1 and count_class_1 < norme_p // 2:
-                self.elements.append(Paire(x, classification))
-                count_class_1 += 1
-            elif classification == 0:
-                self.elements.append(Paire(x, classification))
-                count_class_0 += 1
+            # Modifier le vecteur pour qu'il soit classé comme 1
+            while not signe_de_x_prime_transposee_omega(x, self.omega_correspondant):
+                x = random_vecteur(dimension_n)  # Regénérer jusqu'à obtenir une classification correcte
+            self.elements.append(Paire(x, 1))
+
+        # Générer la moitié des vecteurs pour la classe 0
+        for _ in range(norme_p // 2):
+            x = random_vecteur(dimension_n)
+            # Modifier le vecteur pour qu'il soit classé comme 0
+            while signe_de_x_prime_transposee_omega(x, self.omega_correspondant):
+                x = random_vecteur(dimension_n)  # Regénérer jusqu'à obtenir une classification correcte
+            self.elements.append(Paire(x, 0))
+
     # Afficher un ensemble LS
     def __str__(self):
-        return (super.__str__(self) +
+        return (super().__str__() +
                 '\n' + "omega correspondant : " +
                 str(self.omega_correspondant))
 
 # Test en générant un ensemble
-ensembleLS = EnsembleLS(2, 7)
+ensembleLS = EnsembleLS(2, 1000)
 ensembleLS.dessiner()
