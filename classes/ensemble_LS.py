@@ -1,10 +1,12 @@
-import matplotlib.pyplot as plt
 from classes.ensemble import Ensemble
 from classes.paire import Paire
 from helpers.helpers import random_omega, random_vecteur, signe_de_x_prime_transposee_omega
 
 class EnsembleLS(Ensemble):
     # Générer un ensemble linéairement séparable avec un équilibre entre les classes
+    # Parce que le hasard de la génération peut faire un ensemble avec exclusivement des
+    # exemples de classe 0 ou de classe 1, ou 2 exemples d'une classe et 98 de l'autre
+    # donc on va essayer d'équilibrer notre génération pour qu'elle soit cohérente
     def __init__(self, dimension_n, norme_p, *args):
         # Générer un vecteur omega qui va servir à générer l'ensemble
         super().__init__(*args)
@@ -28,11 +30,12 @@ class EnsembleLS(Ensemble):
             self.elements.append(Paire(x, 0))
 
     # Afficher un ensemble LS
+    @property
     def __str__(self):
         return (super().__str__() +
                 '\n' + "omega correspondant : " +
                 str(self.omega_correspondant))
 
 # Test en générant un ensemble
-ensembleLS = EnsembleLS(2, 1000)
+ensembleLS = EnsembleLS(2, 1500)
 ensembleLS.dessiner()
