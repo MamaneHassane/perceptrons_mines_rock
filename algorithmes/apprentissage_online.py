@@ -6,12 +6,14 @@ from classes.ensemble import Ensemble
 from helpers.helpers import random_vecteur, vecteur_nul, x_prime
 
 # Algorithme d'apprentissage du perceptron version online (incrémentale)
-def apprentissage_online(ensemble, dimension_n, pas_alpha):
+def apprentissage_online(ensemble, dimension_n, pas_alpha, omega_random):
     # omega random : les exécutions seront différentes
-    omega = random_vecteur(dimension_n + 1)
+    omega = omega_random
     alpha = pas_alpha
-    print("Début...")
+    # le nombre d'itérations
+    nb_iterations = 0
 
+    print("Début...")
     # Liste des indices des paires non traitées et traitées
     index_non_traites = list(range(len(ensemble.elements)))
     index_traites = []
@@ -36,14 +38,19 @@ def apprentissage_online(ensemble, dimension_n, pas_alpha):
         if paire.est_bien_predite(omega):  # y = t
             print("La paire", paire.vecteur, "prediction", paire.classement_paire_y(omega),
                   "classe réelle", paire.classification_t, "avec omega à", omega)
+            # On incrémente le nombre d'itérations
+            nb_iterations += 1
         else:  # y != t
             delta_omega = np.dot(alpha * (paire.classification_t - paire.classement_paire_y(omega)), x_prime(paire.vecteur))
             # Version online : on change directement omega
             omega = omega + delta_omega
             print("La paire", paire.vecteur, "prediction actuelle", paire.classement_paire_y(omega),
                   "classe réelle", paire.classification_t, "a causé un changement de omega à", omega)
+            # On incrémente le nombre d'itérations
+            nb_iterations += 1
 
     print("Toutes les paires ont bien été classées avec omega à", omega, "\nFin de l'exécution")
+    return omega, nb_iterations
 
 # On définit plusieurs paires
 a = Paire((1, 1), 1)
@@ -52,5 +59,6 @@ c = Paire((0, 1), 1)
 d = Paire((0, 0), 0)
 
 # On essaye avec la fonction OU
+w_random = random_vecteur(2)
 fonction_OU = Ensemble(a, b, c, d)
-apprentissage_online(fonction_OU, 2, 0.2)
+apprentissage_online(fonction_OU, 2, 0.2, w_random)
