@@ -24,6 +24,10 @@ def random_vecteur(dimension) :
 def random_omega(dimension):
     return np.insert(np.random.uniform(-1, 1, dimension),0,1)
 
+# Calculer la norme d'un vecteur
+def norme(vecteur_np):
+    return np.linalg.norm(vecteur_np)
 
-
-
+# Calculer le récouvrement R entre deux vecteurs
+def recouvrement_r(vecteur1, vecteur2):
+    return np.cos(np.dot(vecteur1, vecteur2)/(norme(vecteur1) * norme(vecteur2)))
