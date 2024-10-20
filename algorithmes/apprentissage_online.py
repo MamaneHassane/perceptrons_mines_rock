@@ -1,15 +1,18 @@
 import numpy as np
 import random
 
+from pyparsing import alphas
+
 from classes.paire import Paire
 from classes.ensemble import Ensemble
-from helpers.helpers import random_vecteur, vecteur_nul, x_prime
+from helpers.helpers import random_vecteur, vecteur_nul, x_prime, random_omega
+
 
 # Algorithme d'apprentissage du perceptron version online (incrémentale)
-def apprentissage_online(ensemble, dimension_n, pas_alpha, omega_random):
+def apprentissage_online(ensemble, pas_alpha, omega_random):
     # omega random : les exécutions seront différentes
     omega = omega_random
-    alpha = pas_alpha
+    pas_apprentissage = pas_alpha
     # le nombre d'itérations
     nb_iterations = 0
 
@@ -41,7 +44,7 @@ def apprentissage_online(ensemble, dimension_n, pas_alpha, omega_random):
             # On incrémente le nombre d'itérations
             nb_iterations += 1
         else:  # y != t
-            delta_omega = np.dot(alpha * (paire.classification_t - paire.classement_paire_y(omega)), x_prime(paire.vecteur))
+            delta_omega = np.dot(pas_apprentissage * (paire.classification_t - paire.classement_paire_y(omega)), x_prime(paire.vecteur))
             # Version online : on change directement omega
             omega = omega + delta_omega
             print("La paire", paire.vecteur, "prediction actuelle", paire.classement_paire_y(omega),
@@ -59,6 +62,7 @@ c = Paire((0, 1), 1)
 d = Paire((0, 0), 0)
 
 # On essaye avec la fonction OU
-w_random = random_vecteur(2)
+w_random = random_omega(2)
+alpha = 0.2
 fonction_OU = Ensemble(a, b, c, d)
-apprentissage_online(fonction_OU, 2, 0.2, w_random)
+apprentissage_online(fonction_OU, alpha, w_random)

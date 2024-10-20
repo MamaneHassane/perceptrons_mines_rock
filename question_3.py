@@ -6,7 +6,6 @@ from helpers.helpers import random_omega, recouvrement_r
     # un algorithme batch ou online
     # une dimension N
     # un nombre d'exemples P
-    #
 def apprendre(dimension_n, exemple_p, pas_eta):
     # On génère un ensemble LS, qui contient son omega correspondant ( professeur )
     ensembleLS = EnsembleLS(dimension_n, exemple_p)
@@ -19,5 +18,5 @@ def apprendre(dimension_n, exemple_p, pas_eta):
     # On retourne :
         # les n+1 poids du w_élève
         # le nombre d'itérations
-        # le récouvrement entre w_professeur et w_correspondant
+        # le récouvrement entre w_eleve et w_correspondant
     return w_eleve, nb_iterations, recouvrement_r(w_eleve, ensembleLS.omega_correspondant)
