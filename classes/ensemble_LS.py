@@ -13,29 +13,21 @@ class EnsembleLS(Ensemble):
         self.omega_correspondant = random_omega(dimension_n)
         self.elements = []
 
-        # Générer la moitié des vecteurs pour la classe 1
-        for _ in range(norme_p // 2):
+        for _ in range(norme_p-1):
             x = random_vecteur(dimension_n)
-            # Modifier le vecteur pour qu'il soit classé comme 1
-            while not signe_de_x_prime_transposee_omega(x, self.omega_correspondant):
-                x = random_vecteur(dimension_n)  # Regénérer jusqu'à obtenir une classification correcte
-            self.elements.append(Paire(x, 1))
-
-        # Générer la moitié des vecteurs pour la classe 0
-        for _ in range(norme_p // 2):
-            x = random_vecteur(dimension_n)
-            # Modifier le vecteur pour qu'il soit classé comme 0
-            while signe_de_x_prime_transposee_omega(x, self.omega_correspondant):
-                x = random_vecteur(dimension_n)  # Regénérer jusqu'à obtenir une classification correcte
-            self.elements.append(Paire(x, 0))
+            if signe_de_x_prime_transposee_omega(x, self.omega_correspondant):
+                self.elements.append(Paire(x, 1))
+            else :
+                self.elements.append(Paire(x, 0))
 
     # Afficher un ensemble LS
-    @property
     def __str__(self):
         return (super().__str__() +
                 '\n' + "omega correspondant : " +
                 str(self.omega_correspondant))
 
-# Test en générant un ensemble
-ensembleLS = EnsembleLS(2, 1500)
-ensembleLS.dessiner()
+if __name__ == "__main__":
+    # Test en générant un ensemble
+    ensembleLS = EnsembleLS(2, 100)
+    ensembleLS.dessiner()
+    print(ensembleLS)

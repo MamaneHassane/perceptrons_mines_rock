@@ -10,7 +10,7 @@ def apprendre(dimension_n, exemple_p, pas_eta):
     # On génère un ensemble LS, qui contient son omega correspondant ( professeur )
     ensembleLS = EnsembleLS(dimension_n, exemple_p)
     # On le dessine
-    ensembleLS.dessiner()
+    # ensembleLS.dessiner()
     # On génère un omega élève
     w_eleve = random_omega(dimension_n)
     # On apprend notre ensemble avec w_eleve

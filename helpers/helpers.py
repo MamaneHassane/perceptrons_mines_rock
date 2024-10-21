@@ -30,4 +30,6 @@ def norme(vecteur_np):
 
 # Calculer le récouvrement R entre deux vecteurs
 def recouvrement_r(vecteur1, vecteur2):
-    return np.cos(np.dot(vecteur1, vecteur2)/(norme(vecteur1) * norme(vecteur2)))
+    produit_scalaire = np.dot(vecteur1, vecteur2)
+    norme_produit = norme(vecteur1) * norme(vecteur2)
+    return produit_scalaire / norme_produit

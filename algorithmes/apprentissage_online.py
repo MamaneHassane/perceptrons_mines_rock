@@ -1,11 +1,7 @@
 import numpy as np
 import random
 
-from pyparsing import alphas
-
-from classes.paire import Paire
-from classes.ensemble import Ensemble
-from helpers.helpers import random_vecteur, vecteur_nul, x_prime, random_omega
+from helpers.helpers import x_prime
 
 
 # Algorithme d'apprentissage du perceptron version online (incrémentale)
@@ -54,15 +50,3 @@ def apprentissage_online(ensemble, pas_alpha, omega_random):
 
     print("Toutes les paires ont bien été classées avec omega à", omega, "\nFin de l'exécution")
     return omega, nb_iterations
-
-# On définit plusieurs paires
-a = Paire((1, 1), 1)
-b = Paire((1, 0), 1)
-c = Paire((0, 1), 1)
-d = Paire((0, 0), 0)
-
-# On essaye avec la fonction OU
-w_random = random_omega(2)
-alpha = 0.2
-fonction_OU = Ensemble(a, b, c, d)
-apprentissage_online(fonction_OU, alpha, w_random)
