@@ -28,12 +28,23 @@ def apprendre(apprentissage, ensemble,  dimension_n, pas_eta):
     return w_eleve, nb_iterations, recouvrement_r(w_eleve, ensemble.omega_correspondant)
 
 if __name__ == "__main__":
-    dimension_test = 2
-    ensemble_d_apprentissage = EnsembleLS(dimension_test, 5000)
-    eta = 0.5
 
-    w_eleve_1, nb_iterations_1, recouvrement = apprendre(1, ensemble_d_apprentissage, dimension_test, eta)
+    dimension_test = 4
+    ensemble_d_apprentissage = EnsembleLS(dimension_test, 100)
+    eta = 0.5
+    methode_dapprentissage = 1 # online
+
+    w_eleve_1, nb_iterations_1, recouvrement = apprendre(methode_dapprentissage, ensemble_d_apprentissage, dimension_test, eta)
     print("w_eleve : ", w_eleve_1,
           "nb_iterations : ", nb_iterations_1,
           "recouvrement : ", recouvrement_r(w_eleve_1,ensemble_d_apprentissage.omega_correspondant)
         )
+
+    methode_dapprentissage = 0  # batch
+
+    w_eleve_1, nb_iterations_1, recouvrement = apprendre(methode_dapprentissage, ensemble_d_apprentissage,
+                                                         dimension_test, eta)
+    print("w_eleve : ", w_eleve_1,
+          "nb_iterations : ", nb_iterations_1,
+          "recouvrement : ", recouvrement_r(w_eleve_1, ensemble_d_apprentissage.omega_correspondant)
+          )

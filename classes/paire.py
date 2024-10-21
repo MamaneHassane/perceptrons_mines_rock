@@ -19,7 +19,7 @@ class Paire:
         if self.transposee_omega_x_prime(omega) > 0:
             return 1
         else:
-            return 0
+            return -1
     # Savoir si une paire est bien classée par le perceptron par rapport a sa classification t
     def est_bien_predite(self, omega):
         if self.classement_paire_y(omega) == self.classification_t:

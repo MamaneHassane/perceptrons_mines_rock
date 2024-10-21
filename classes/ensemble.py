@@ -16,7 +16,7 @@ class Ensemble :
         return result
     def dessiner(self):
         # Séparer les points en fonction de leur classification
-        points_0 = [paire.vecteur for paire in self.elements if paire.classification_t == 0]
+        points_0 = [paire.vecteur for paire in self.elements if paire.classification_t == -1]
         points_1 = [paire.vecteur for paire in self.elements if paire.classification_t == 1]
         # Convertir les listes de points en coordonnées x et y
         x0 = [point[0] for point in points_0]
