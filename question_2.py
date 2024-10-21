@@ -39,12 +39,3 @@ if __name__ == "__main__":
           "nb_iterations : ", nb_iterations_1,
           "recouvrement : ", recouvrement_r(w_eleve_1,ensemble_d_apprentissage.omega_correspondant)
         )
-
-    methode_dapprentissage = 0  # batch
-
-    w_eleve_1, nb_iterations_1, recouvrement = apprendre(methode_dapprentissage, ensemble_d_apprentissage,
-                                                         dimension_test, eta)
-    print("w_eleve : ", w_eleve_1,
-          "nb_iterations : ", nb_iterations_1,
-          "recouvrement : ", recouvrement_r(w_eleve_1, ensemble_d_apprentissage.omega_correspondant)
-          )

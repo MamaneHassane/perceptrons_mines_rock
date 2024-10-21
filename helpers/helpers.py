@@ -17,9 +17,15 @@ def vecteur_nul(dimension):
     return np.zeros(dimension)
 
 # Générer un vecteur de n éléments aléatoires entre -1 et 1
+# Notre fonction essaye d'équilibrer les chances parce que la plupart du temps
+# python génère des nombres positifs
 def random_vecteur(dimension) :
-    return np.random.uniform(-1, 1, dimension)
+    vecteur = np.random.uniform(-1, 1, dimension)
+    # Générer un masque où une proportion de `bias_neg` des valeurs seront inversées si positives
+    mask = np.random.rand(dimension) < 0.5  # Probabilité d'inverser
+    vecteur[mask & (vecteur > 0)] *= -1  # Inverser les valeurs positives sous le masque
 
+    return vecteur
 # Générer un vecteur omega dont le premier élément est 1, en prenant en compte la dimension de l'ensemble
 def random_omega(dimension):
     return np.insert(np.random.uniform(-1, 1, dimension),0,1)

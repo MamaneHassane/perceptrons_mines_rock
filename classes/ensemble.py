@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-# Un ensemble X = { (x(u), t(u)), x vecteur de R^n et t = { 0 / 1 } } est constitué de paire
+# Un ensemble X = { (x(u), t(u)), x vecteur de R^n et t = { -1 / 1 } } est constitué de paire
 from classes.paire import Paire
 
 class Ensemble :
@@ -29,7 +29,7 @@ class Ensemble :
         # Ajouter des labels et afficher la légende
         plt.xlabel('X1')
         plt.ylabel('X2')
-        plt.legend()
+        # plt.legend()
         plt.title('Représentation des points de l\'ensemble')
         plt.grid(True)
         # Afficher le graphe
