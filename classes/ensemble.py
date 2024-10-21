@@ -24,7 +24,7 @@ class Ensemble :
         x1 = [point[0] for point in points_1]
         y1 = [point[1] for point in points_1]
         # Dessiner les points sur le graphique
-        plt.scatter(x0, y0, color='blue', label='Classification 0')
+        plt.scatter(x0, y0, color='blue', label='Classification -1')
         plt.scatter(x1, y1, color='red', label='Classification 1')
         # Ajouter des labels et afficher la légende
         plt.xlabel('X1')
