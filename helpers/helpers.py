@@ -38,4 +38,4 @@ def norme(vecteur_np):
 def recouvrement_r(vecteur1, vecteur2):
     produit_scalaire = np.dot(vecteur1, vecteur2)
     norme_produit = norme(vecteur1) * norme(vecteur2)
-    return produit_scalaire / norme_produit
+    return np.cos(produit_scalaire / norme_produit)
