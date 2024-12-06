@@ -46,7 +46,7 @@ if __name__ == "__main__":
     N_values = [2, 10]
     P_values = [10, 100]
     eta_values = [0.5, 0.25, 0.05]
-    methode_apprentissage = 1  # 0 pour batch, 1 pour online
+    methode_apprentissage = 0  # 0 pour batch, 1 pour online
 
     results = calculer_moyennes(N_values, P_values, eta_values, methode_apprentissage)
 

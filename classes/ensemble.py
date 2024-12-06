@@ -34,9 +34,9 @@ class Ensemble :
         plt.grid(True)
         # Afficher le graphe
         plt.show()
-    def ajouter_paire(self, vecteur):
-        if isinstance(vecteur, Paire):
-            self.elements.append(vecteur)
+    def ajouter_paire(self, paire):
+        if isinstance(paire, Paire):
+            self.elements.append(paire)
     # Savoir si un ensemble est correctement classé par rappor à un omega donné
     def est_correctement_classe(self, omega):
         for exemple in self.elements:
