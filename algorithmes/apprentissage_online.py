@@ -1,7 +1,7 @@
 import numpy as np
 import random
 
-from helpers.helpers import x_prime
+from helpers.helpers import x_prime, normaliser
 
 
 # Algorithme d'apprentissage du perceptron version online (incrémentale)

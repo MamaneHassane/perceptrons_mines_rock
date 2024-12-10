@@ -39,3 +39,7 @@ def recouvrement_r(vecteur1, vecteur2):
     produit_scalaire = np.dot(vecteur1, vecteur2)
     norme_produit = norme(vecteur1) * norme(vecteur2)
     return np.cos(produit_scalaire / norme_produit)
+
+# normaliser un vecteur
+def normaliser(vecteur_w):
+    return (vecteur_w-np.min(vecteur_w))/(np.max(vecteur_w)-np.min(vecteur_w)) # normalisation

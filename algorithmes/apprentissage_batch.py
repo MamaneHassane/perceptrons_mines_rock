@@ -1,4 +1,5 @@
-from helpers.helpers import random_vecteur, vecteur_nul, x_prime, random_omega
+from helpers.helpers import random_vecteur, vecteur_nul, x_prime, random_omega, normaliser
+
 
 # Algorithme d'apprentissage du perceptron version batch
 # On retourne le vecteur omega, ensemble des poids, qui va nous servir à classer de nouvelles données
@@ -20,15 +21,15 @@ def apprentissage_batch(ensemble, dimension_n, pas_alpha, omega_random):
         # Calcul du delta_omega pour toutes les paires mal classées
         for paire in ensemble.elements:
             if not paire.est_bien_predite(omega):  # Si la paire est mal classée
-                delta_omega += alpha * (paire.classification_t - paire.classement_paire_y(omega)) * x_prime(
-                    paire.vecteur)
+                delta_omega += alpha * (paire.classification_t - paire.classement_paire_y(omega)) * x_prime(paire.vecteur)
 
         # Mise à jour du vecteur omega après avoir parcouru toutes les paires
         omega += delta_omega
+        omega = normaliser(omega)
         nb_iterations += 1
 
         # Affichage intermédiaire pour suivre l'évolution
-        print(f"Itération {nb_iterations}: Nouveau omega = {omega}")
+        # print(f"Itération {nb_iterations}: Nouveau omega = {omega}")
 
     print("Toutes les paires ont été correctement classées.")
     print(f"Omega final : {omega}")
